@@ -4,27 +4,43 @@ import { Link } from 'react-router-dom'
 
 class Main extends Component {
 
-    handleSubmit(e){
-       e.preventDefault()
-    
+    constructor() {
+        super()
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleEmail = this.handleEmail.bind(this)
+        this.handlePassword = this.handlePassword.bind(this)
+
+        this.state = {
+            email: undefined,
+            password: undefined
+        }
+    }
+
+    handleSubmit(e) {
+        e.preventDefault()
+
         var sendData = {
             userData: {
-                // email: this.state.email,
-                // password: this.state.password
+                email: this.state.email,
+                password: this.state.password
             }
         }
-    //    fetch()
-       console.log('oi!', this.email, this.password)
+        //    fetch()
+        console.log(sendData)
     }
 
-    handleEmail(e){
-        var email = e.target.value
+    handleEmail(e) {
+        this.setState({
+            email: e.target.value
+        })
     }
 
-    handlePassword(e){
-        var password = e.target.value
+    handlePassword(e) {
+        this.setState({
+            password: e.target.value
+        })
     }
-    
+
     render() {
         return (<div className="flex flex-between flex-col items-center">
             <form onSubmit={this.handleSubmit} className="flex flex-col flex-wrap justify-around p-10 items-center">
@@ -44,15 +60,14 @@ class Main extends Component {
                     </div>
                 </div>
                 <div style={{ marginTop: "120px" }}>
-                <button type="submit" className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
-                    Confirm
-                </button>
-                <button type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                    <Link to="/register">Register</Link>
-                </button>
-            </div>
+                    <button type="submit" className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
+                        Confirm
+                    </button>
+                    <button type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                        <Link to="/register">Register</Link>
+                    </button>
+                </div>
             </form>
-            
         </div>
         )
     }
