@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { UserCircle, Key } from 'phosphor-react'
 import { Link } from 'react-router-dom'
+
+import sendUserInfo from '../store/action/userInfo'
 
 class Main extends Component {
 
@@ -25,8 +28,15 @@ class Main extends Component {
                 password: this.state.password
             }
         }
+
+        if (sendData.userData.email && sendData.userData.password) {
+            console.log(sendData)
+            this.props.userInfo(sendData)
+
+        } else {
+            alert('Preencha os campos')
+        }
         //    fetch()
-        console.log(sendData)
     }
 
     handleEmail(e) {
@@ -73,4 +83,13 @@ class Main extends Component {
     }
 }
 
-export default Main
+function mapDispatchToProps(dispatch) {
+    return {
+        userInfo(data) {
+            const action = sendUserInfo(data)
+            dispatch(action)
+        }
+    }
+}
+
+export default connect(null,mapDispatchToProps)(Main)
