@@ -1,26 +1,15 @@
 const initialState = {
-    email: undefined,
-    password: undefined
+    email: '',
+    password: ''
 }
 
-export default function (state = initialState, action){
-//     if(action.type === 'USER_LOGIN_AND_PASSWORD'){
-//         return{
-//             ...state,
-//             email: action.payload.email,
-//             password: action.payload.password
-//         }
-//     }
-
-
-switch(action.type){
-    case 'USER_LOGIN_AND_PASSWORD':
+export default function (state = initialState, action) {
+    if (action.type === 'USER_LOGIN_AND_PASSWORD') {
         return {
-            ...state,
-            email: action.payload.email,
-            password: action.payload.password
+            email: action.payload.userData.email,
+            password: action.payload.userData.password
         }
-    default:
-        return state
-}
+    } else {
+        return (state)
+    }
 }

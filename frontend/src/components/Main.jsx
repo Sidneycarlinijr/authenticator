@@ -14,8 +14,8 @@ class Main extends Component {
         this.handlePassword = this.handlePassword.bind(this)
 
         this.state = {
-            email: undefined,
-            password: undefined
+            email: '',
+            password: ''
         }
     }
 
@@ -30,13 +30,14 @@ class Main extends Component {
         }
 
         if (sendData.userData.email && sendData.userData.password) {
-            console.log(sendData)
             this.props.userInfo(sendData)
 
         } else {
             alert('Preencha os campos')
         }
-        //    fetch()
+
+        console.log(this.props.sentEmail, '<-- dados retornados reducer')
+        console.log(this.props.sentPassword, '<-- dados retornados reducer')
     }
 
     handleEmail(e) {
@@ -50,6 +51,8 @@ class Main extends Component {
             password: e.target.value
         })
     }
+
+    
 
     render() {
         return (<div className="flex flex-between flex-col items-center">
@@ -92,4 +95,12 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(null,mapDispatchToProps)(Main)
+function mapStateToProps(state) {
+    return ({
+        sentEmail: state.userInfo.email,
+        sentPassword: state.userInfo.password
+})
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main)
