@@ -1,27 +1,19 @@
-var config = require('../config');
-const { MongoClient } = require("mongodb");
+const { MongoClient } = require('mongodb');
+const assert = require('assert')
 const app = require('../app');
 
-var db;
+const mongoUrl = 'mongodb://localhost:27017'
 var collection;
 
+MongoClient.connect(mongoUrl, (err, database) => {
+    assert.equal(null, err);
+    console.log('MongoDB - Conectado')
 
-MongoClient.connect(config.MONGO_URL, (err, database) => {
-    if (!err) {
-        console.log('MongoDB - Conectado')
-        db = database
-        collection = db.collection('users')
-    } else {
-        console.log('MongoDB - Nao foi possivel conectar')
-    }
+    const db = database
+    collection = db.collection('users')
+
+    client.close();
 });
 
 module.exports = {
-
-    register: (data, handler) => {
-
-
-
-    }
-
 }

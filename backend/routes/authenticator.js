@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-var config = require('../config')
 var jwt = require('jsonwebtoken')
 
 
@@ -19,7 +18,7 @@ router.post('/login', (req, res, next) => {
         let tokenData = {
             id: 101
         }
-        let newToken = jwt.sign(tokenData, config.JWT_KEY, { expiresIn: '1m' });
+        let newToken = jwt.sign(tokenData, secret_key_auth_project, { expiresIn: '1m' });
         res.json({
             success: true,
             token: newToken
