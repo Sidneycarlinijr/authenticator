@@ -19,27 +19,6 @@ class Main extends Component {
         }
     }
 
-    handleSubmit(e) {
-        e.preventDefault()
-
-        var sendData = {
-            userData: {
-                email: this.state.email,
-                password: this.state.password
-            }
-        }
-
-        if (sendData.userData.email && sendData.userData.password) {
-            this.props.userInfo(sendData)
-
-        } else {
-            alert('Preencha os campos')
-        }
-
-        console.log(this.props.sentEmail, '<-- dados retornados reducer')
-        console.log(this.props.sentPassword, '<-- dados retornados reducer')
-    }
-
     handleEmail(e) {
         this.setState({
             email: e.target.value
@@ -52,7 +31,38 @@ class Main extends Component {
         })
     }
 
-    
+    handleSubmit(e) {
+        const url = 'http://localhost:3001/authenticator/login'
+
+
+        e.preventDefault()
+
+        var sendData = {
+            userData: {
+                email: this.state.email,
+                password: this.state.password
+            }
+        }
+
+        this.props.userInfo(sendData)
+
+        if (sendData.userData.email && sendData.userData.password) {
+            fetch(url, {
+                method: "POST",
+                body: JSON.stringify(sendData),
+                headers: {"Content-type": "application/json;charset=UTF-8"}
+            })
+            .then(response => response.json())
+            .then(json => console.log(json));
+            
+
+        } else {
+            alert('Preencha os campos')
+        }
+
+        console.log(this.props.sentEmail, '<-- dados retornados reducer')
+        console.log(this.props.sentPassword, '<-- dados retornados reducer')
+    }
 
     render() {
         return (<div className="flex flex-between flex-col items-center">
@@ -99,7 +109,7 @@ function mapStateToProps(state) {
     return ({
         sentEmail: state.userInfo.email,
         sentPassword: state.userInfo.password
-})
+    })
 
 }
 

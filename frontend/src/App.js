@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 
 import './App.css';
 import Home from './components/Home'
@@ -10,9 +10,9 @@ function App() {
   return (
     <div className="App rounded bg-white-100 flex justify-center">
       <Routes>
-        <Route path="/" element={<Main/>} />
-        <Route path="/register" element={<Register/>} />
-        <Route path="/home" element={<Home/>} />
+        <Route path="/" element={<Main />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </div>
   )
