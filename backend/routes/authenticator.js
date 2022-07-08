@@ -5,14 +5,14 @@ var config = require('../config')
 var jwt = require('jsonwebtoken')
 
 
-//Json web token generator
+//Json web token generator response
 router.post('/login', (req, res, next) => {
     const { email, password } = req.body.userData;
 
-    if (email === undefined || password === undefined) {
+    if (!email || !password) {
         res.status(401).json({
             success: false,
-            code: 'API_ERROR',
+            code: 'API_ERROR_EMAIL_OR_PASSWORD_UNDEFINED',
             message: 'Invalid email or password'
         })
     } else {

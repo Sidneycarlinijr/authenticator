@@ -1,8 +1,10 @@
 var config = require('../config');
 const { MongoClient } = require("mongodb");
+const app = require('../app');
 
 var db;
 var collection;
+
 
 MongoClient.connect(config.MONGO_URL, (err, database) => {
     if (!err) {
@@ -21,5 +23,5 @@ module.exports = {
 
 
     }
-    
+
 }
