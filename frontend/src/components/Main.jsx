@@ -44,24 +44,36 @@ class Main extends Component {
             }
         }
 
-        this.props.userInfo(sendData)
-
         if (sendData.userData.email && sendData.userData.password) {
+            this.props.userInfo(sendData)
+
+            var loginDataSent = {
+                userData: {
+                    email: this.props.sentEmail,
+                    password: this.props.sentPassword
+                }
+            }
+
             fetch(url, {
                 method: "POST",
-                body: JSON.stringify(sendData),
-                headers: {"Content-type": "application/json;charset=UTF-8"}
+                body: JSON.stringify(loginDataSent),
+                headers: { "Content-type": "application/json;charset=UTF-8" }
             })
-            .then(response => response.json())
-            .then(json => console.log(json));
-            
+                .then(response => response.json())
+                //salvar token no local storage
+                .then(json => {
+                    console.log(json)
+                    if (json.success) {
+                        localStorage.setItem('authToken', json.token)
+                    }
+                });
+
 
         } else {
             alert('Preencha os campos')
         }
 
-        console.log(this.props.sentEmail, '<-- dados retornados reducer')
-        console.log(this.props.sentPassword, '<-- dados retornados reducer')
+        console.log(loginDataSent, '<-- dados retornados reducer')
     }
 
     render() {
@@ -110,7 +122,6 @@ function mapStateToProps(state) {
         sentEmail: state.userInfo.email,
         sentPassword: state.userInfo.password
     })
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main)
