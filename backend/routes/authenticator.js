@@ -3,7 +3,6 @@ var router = express.Router();
 
 var jwt = require('jsonwebtoken')
 
-
 //Json web token generator response
 router.post('/login', (req, res, next) => {
     const { email, password } = req.body.userData;
@@ -18,18 +17,11 @@ router.post('/login', (req, res, next) => {
         let tokenData = {
             id: 101
         }
-        let newToken = jwt.sign(tokenData, secret_key_auth_project, { expiresIn: '1m' });
+        let newToken = jwt.sign(tokenData, 'secret_key_auth_project', { expiresIn: '1m' });
         res.json({
             success: true,
             token: newToken
         })
     }
-
-    // res.json({
-    //     sendedEmail: email,
-    //     sendedPass: password
-    // })
-
-
 })
 module.exports = router;

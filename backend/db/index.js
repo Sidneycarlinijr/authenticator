@@ -1,19 +1,29 @@
 const { MongoClient } = require('mongodb');
 const assert = require('assert')
-const app = require('../app');
 
 const mongoUrl = 'mongodb://localhost:27017'
 var collection;
+var db;
 
-MongoClient.connect(mongoUrl, (err, database) => {
+MongoClient.connect(mongoUrl, (err, client) => {
     assert.equal(null, err);
-    console.log('MongoDB - Conectado')
 
-    const db = database
+    db = client.db('authenticator')
     collection = db.collection('users')
 
-    client.close();
+    // console.log('MongoDB - Conectado', db, collection)
 });
 
 module.exports = {
+    userRegister: () => {
+        console.log('to no index db')
+    }
+    
+    
+    // userRegister: (data, handler) => {
+    //     console.log('cheguei no index do db')
+    //     collection.insertOne(data, (err, result) =>{
+    //         handler(err, result);
+    //     })
+    // }
 }
