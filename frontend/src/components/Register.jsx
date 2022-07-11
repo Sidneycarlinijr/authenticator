@@ -13,24 +13,19 @@ class Register extends Component {
         this.handlePassword = this.handlePassword.bind(this)
         this.handleConfirmPassword = this.handleConfirmPassword.bind(this)
 
-            this.state = {
-                userName: '',
-                number: 0,
-                email: '',
-                password: '',
-                confirmPassword: '',
-            }
+        this.state = {
+            userName: '',
+            phoneNumber: 0,
+            email: '',
+            password: '',
+            confirmPassword: '',
+        }
     }
 
-    handleSubmit(e){
-        e.preventDefault()
-    }
-    
     handleUserName(e) {
         this.setState({
             userName: e.target.value
         })
-        console.log(this.state.userName, this.state.phoneNumber)
     }
 
     handlePhoneNumber(e) {
@@ -53,8 +48,39 @@ class Register extends Component {
 
     handleConfirmPassword(e) {
         this.setState({
-            passwordConfirm: e.target.value
+            confirmPassword: e.target.value
         })
+    }
+
+    handleSubmit(e) {
+        const url = 'http://localhost:3001/authenticator/login'
+
+        e.preventDefault()
+
+        var sendData = {
+            userData: {
+                userName: this.state.userName,
+                number: this.state.phoneNumber,
+                email: this.state.email,
+                password: this.state.password,
+                confirmPassword: this.state.confirmPassword
+            }
+        }
+
+        var userName = sendData.userData.userName
+        var number = sendData.userData.number
+        var email = sendData.userData.email
+        var password = sendData.userData.password
+        var confirmPassword = sendData.userData.confirmPassword
+
+        if (!userName || !number || !email || !password || !confirmPassword) {
+            alert('Complete all the fields')
+        }
+
+        if (password != confirmPassword) {
+            alert('The password and confirm password fields do not match.')
+        }
+
     }
 
     render() {
