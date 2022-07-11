@@ -94,23 +94,23 @@ class Register extends Component {
                     <p className="text-center ">Sign up</p>
                     <div>
                         <IdentificationBadge size={26} className="absolute mt-1" />
-                        <input onChange={this.handleUserName} className="w-64 h-8 text-sm mb-1 pl-8" type="text" placeholder='Name'></input>
+                        <input required onChange={this.handleUserName} className="w-64 h-8 text-sm mb-1 pl-8" type="text" placeholder='Name'></input>
                     </div>
                     <div>
                         <Hash size={26} className="absolute mt-1" />
-                        <input onChange={this.handlePhoneNumber} className="w-64 h-8 text-sm mb-1 pl-8" type="number" placeholder='Mobile Number'></input>
+                        <input required onChange={this.handlePhoneNumber} className="w-64 h-8 text-sm mb-1 pl-8" type="number" placeholder='Mobile Number'></input>
                     </div>
                     <div>
                         <UserCircle size={26} className="absolute mt-1" />
-                        <input onChange={this.handleEmail} className="w-64 h-8 text-sm mb-1 pl-8" type="email" placeholder='Email Address'></input>
+                        <input required onChange={this.handleEmail} className="w-64 h-8 text-sm mb-1 pl-8" type="email" placeholder='Email Address'></input>
                     </div>
                     <div>
                         <Key size={26} className="absolute mt-1" />
-                        <input onChange={this.handlePassword} className="w-64 h-8 text-sm mb-1 pl-8" type="password" placeholder='Password'></input>
+                        <input required onChange={this.handlePassword} className="w-64 h-8 text-sm mb-1 pl-8" type="password" placeholder='Password'></input>
                     </div>
                     <div>
                         <LockKey size={26} className="absolute mt-1" />
-                        <input onChange={this.handleConfirmPassword} className="w-64 h-8 text-sm pl-8" type="password" placeholder='Confirm Password'></input>
+                        <input required onChange={this.handleConfirmPassword} className="w-64 h-8 text-sm pl-8" type="password" placeholder='Confirm Password'></input>
                     </div>
                 </div>
                 <div className="">
