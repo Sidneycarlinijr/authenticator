@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { React, Component } from 'react'
 import { connect } from 'react-redux'
 import { UserCircle, Key } from 'phosphor-react'
 import { Link } from 'react-router-dom'
