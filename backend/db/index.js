@@ -15,8 +15,8 @@ MongoClient.connect(mongoUrl, (err, client) => {
 });
 
 module.exports = {
-    userRegister: () => {
-        console.log('to no index db')
+    userRegister: (userInfo) => {
+        collection.insertOne(userInfo)
     }
     
     

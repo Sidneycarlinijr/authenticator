@@ -13,6 +13,11 @@ router.post('/register', (req, res, next) => {
     number,
   };
 
+
+  //ver necessidade de validar a entrada de dados
+  //se existe informacoes nos campos acima (userInfo)
+  //considerando apenas o userRegister -> testar clone devido a
+  //criacao do collection + authenticator (db)
   res.json(userInfo)
   db.userRegister(userInfo)
   
