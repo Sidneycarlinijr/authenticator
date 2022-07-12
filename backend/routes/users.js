@@ -1,26 +1,45 @@
 var express = require('express');
+var app = require('../app')
+const db = require('../db')
 var router = express.Router();
-const db = require('../db/index')
 
 /* Este e um bom exemplo para construir o post */
 router.post('/register', (req, res, next) => {
-  const { email, password, name, number } = req.body.userData
+  const { email, password, userName, phoneNumber } = req.body.userData;
 
   userInfo = {
+    userName,
+    phoneNumber,
     email,
     password,
-    name,
-    number,
   };
 
+  if (userName || phoneNumber || email || password) {
+
+    const handler = (err, result) => {
+      if (!err && email !== result.email) {
+        db.userRegister(userInfo)
+
+        console.log('handlerfindUser result ->', result)
+        console.log('fim do resultado')
+      }else{
+        res.status(401).json({
+          success: false,
+          code: 'EMAIL_ALREADY_REGISTERED',
+        })
+      }
+
+    }
+
+
+    db.findUser({ email }, handler)
+
+  }
 
   //ver necessidade de validar a entrada de dados
   //se existe informacoes nos campos acima (userInfo)
   //considerando apenas o userRegister -> testar clone devido a
   //criacao do collection + authenticator (db)
-  res.json(userInfo)
-  db.userRegister(userInfo)
-  
 
   // const handler = (err, result) => {
   //   if (!err) {

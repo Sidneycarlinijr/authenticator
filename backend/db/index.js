@@ -16,10 +16,16 @@ MongoClient.connect(mongoUrl, (err, client) => {
 
 module.exports = {
     userRegister: (userInfo) => {
-        collection.insertOne(userInfo)
+        // collection.insertOne(userInfo)
+    },
+    findUser: (data, handler) => {
+        collection.findOne(data, (err, result) => {
+            handler(err, result);
+        })
+        console.log(data.email)
     }
-    
-    
+
+
     // userRegister: (data, handler) => {
     //     console.log('cheguei no index do db')
     //     collection.insertOne(data, (err, result) =>{

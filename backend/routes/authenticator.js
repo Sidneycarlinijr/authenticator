@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var app = require('../app')
 
 var jwt = require('jsonwebtoken')
 
@@ -7,13 +8,7 @@ var jwt = require('jsonwebtoken')
 router.post('/login', (req, res, next) => {
     const { email, password } = req.body.userData;
 
-    if (!email || !password) {
-        res.status(401).json({
-            success: false,
-            code: 'API_ERROR_EMAIL_OR_PASSWORD_UNDEFINED',
-            message: 'Invalid email or password'
-        })
-    } else {
+    if (email || password) {
         let tokenData = {
             id: 101
         }
@@ -21,6 +16,12 @@ router.post('/login', (req, res, next) => {
         res.json({
             success: true,
             token: newToken
+        })
+    } else {
+        res.status(401).json({
+            success: false,
+            code: 'API_ERROR_EMAIL_OR_PASSWORD_UNDEFINED',
+            message: 'Invalid email or password'
         })
     }
 })
