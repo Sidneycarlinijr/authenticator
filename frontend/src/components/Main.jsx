@@ -32,9 +32,6 @@ class Main extends Component {
     }
 
     handleSubmit(e) {
-        const url = 'http://localhost:3001/authenticator/login'
-
-
         e.preventDefault()
 
         var sendData = {
@@ -44,7 +41,11 @@ class Main extends Component {
             }
         }
 
-        if (sendData.userData.email && sendData.userData.password) {
+        var email = sendData.userData.email
+        var password = sendData.userData.password
+        const url = 'http://localhost:3001/authenticator/login'
+
+        if (email && password) {
             this.props.userInfo(sendData)
 
             var loginDataSent = {
@@ -66,9 +67,7 @@ class Main extends Component {
                     if (json.success) {
                         localStorage.setItem('authToken', json.token)
                     }
-                });
-
-
+                })
         } else {
             alert('Preencha os campos')
         }

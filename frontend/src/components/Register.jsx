@@ -53,14 +53,12 @@ class Register extends Component {
     }
 
     handleSubmit(e) {
-        const url = 'http://localhost:3001/authenticator/login'
-
         e.preventDefault()
 
         var sendData = {
             userData: {
                 userName: this.state.userName,
-                number: this.state.phoneNumber,
+                phoneNumber: this.state.phoneNumber,
                 email: this.state.email,
                 password: this.state.password,
                 confirmPassword: this.state.confirmPassword
@@ -68,19 +66,29 @@ class Register extends Component {
         }
 
         var userName = sendData.userData.userName
-        var number = sendData.userData.number
+        var phoneNumber = sendData.userData.phoneNumber
         var email = sendData.userData.email
         var password = sendData.userData.password
         var confirmPassword = sendData.userData.confirmPassword
+        const url = 'http://localhost:3001/users/register'
 
-        if (!userName || !number || !email || !password || !confirmPassword) {
-            alert('Complete all the fields')
-        }
-
-        if (password != confirmPassword) {
+        if (password !== confirmPassword) {
             alert('The password and confirm password fields do not match.')
         }
 
+        if (userName || phoneNumber || email || password || confirmPassword) {
+            console.log(JSON.stringify(sendData))
+
+            fetch(url, {
+                method: "POST",
+                body: JSON.stringify(sendData),
+                headers: { "Content-type": "application/json;charset=UTF-8" }
+            })
+                .then(response => response.json())
+                .then(json => console.log(json))
+        } else {
+            alert('Complete all the fields')
+        }
     }
 
     render() {
