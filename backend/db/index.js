@@ -16,13 +16,14 @@ MongoClient.connect(mongoUrl, (err, client) => {
 
 module.exports = {
     userRegister: (userInfo) => {
-        // collection.insertOne(userInfo)
+        collection.insertOne(userInfo)
+        console.log('to no userRegister tentando registrar!')
     },
+    
     findUser: (data, handler) => {
         collection.findOne(data, (err, result) => {
             handler(err, result);
         })
-        console.log(data.email)
     }
 
 

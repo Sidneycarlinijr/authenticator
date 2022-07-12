@@ -17,15 +17,26 @@ router.post('/register', (req, res, next) => {
   if (userName || phoneNumber || email || password) {
 
     const handler = (err, result) => {
-      if (!err && email !== result.email) {
-        db.userRegister(userInfo)
+      var resultEmail = result ? result.email : '';
 
-        console.log('handlerfindUser result ->', result)
-        console.log('fim do resultado')
-      }else{
+      if (!err) {
+        if (email !== resultEmail) {
+          db.userRegister(userInfo)
+          res.json({
+            success: true,
+          })
+        } else {
+          console.log('esse email ja existe')
+          console.log(result.email)
+          res.status(401).json({
+            success: false,
+            code: 'EMAIL_ALREADY_REGISTERED',
+          })
+        }
+      } else {
         res.status(401).json({
           success: false,
-          code: 'EMAIL_ALREADY_REGISTERED',
+          code: 'HANDLER_EMAIL_ERROR',
         })
       }
 
