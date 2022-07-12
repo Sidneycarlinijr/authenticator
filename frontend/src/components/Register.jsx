@@ -1,6 +1,9 @@
 import { React, Component } from 'react';
 import { Link } from 'react-router-dom'
 import { UserCircle, LockKey, Hash, IdentificationBadge, Key } from 'phosphor-react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 class Register extends Component {
 
@@ -73,27 +76,53 @@ class Register extends Component {
         const url = 'http://localhost:3001/users/register'
 
         if (password !== confirmPassword) {
-            alert('The password and confirm password fields do not match.')
+            toast.warn('The password and confirm password fields do not match. 😣', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
 
-        if (userName || phoneNumber || email || password || confirmPassword) {
-            console.log(JSON.stringify(sendData))
+        console.log(JSON.stringify(sendData))
 
-            fetch(url, {
-                method: "POST",
-                body: JSON.stringify(sendData),
-                headers: { "Content-type": "application/json;charset=UTF-8" }
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify(sendData),
+            headers: { "Content-type": "application/json;charset=UTF-8" }
+        })
+            .then(response => response.json())
+            .then(json => {
+                if (!json.success) {
+                    toast.warn('Email already registered 😕', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                } else {
+                    toast.success('Register success 😎', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    })
+                }
             })
-                .then(response => response.json())
-                .then(json => console.log(json))
-        } else {
-            alert('Complete all the fields')
-        }
     }
-
     render() {
         return (
             <form onSubmit={this.handleSubmit} className="flex flex-col flex-wrap justify-between p-10 items-center" >
+                <ToastContainer />
                 <header className="text-center">
                     <span className="font-bold text-xl"> Authenticator</span>
                     <p className="text-xs font-thin text-slate-400"> Sign up using your e-mail address</p>
