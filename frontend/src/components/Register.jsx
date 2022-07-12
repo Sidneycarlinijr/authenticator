@@ -84,6 +84,7 @@ class Register extends Component {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
+                theme: 'colored',
             });
         }
 
@@ -105,6 +106,7 @@ class Register extends Component {
                         pauseOnHover: true,
                         draggable: true,
                         progress: undefined,
+                        theme: 'colored',
                     });
                 } else {
                     toast.success('Register success 😎', {
@@ -115,6 +117,7 @@ class Register extends Component {
                         pauseOnHover: true,
                         draggable: true,
                         progress: undefined,
+                        theme: 'colored',
                     })
                 }
             })
