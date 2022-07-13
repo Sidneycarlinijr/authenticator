@@ -16,10 +16,10 @@ router.post('/login', (req, res, next) => {
             if (registeredEmail === email && registeredPassword === password) {
                 console.log('o email e a senha estao de acordo')
 
-                let tokenData = {
+                var tokenData = {
                     id: 1
                 }
-                let newToken = jwt.sign(tokenData, 'secret_key_auth_project', { expiresIn: '1m' });
+                var newToken = jwt.sign(tokenData, 'secret_key_auth_project', { expiresIn: '1m' });
                 res.json({
                     success: true,
                     token: newToken
