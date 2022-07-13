@@ -9,15 +9,15 @@ router.post('/login', (req, res, next) => {
     const { email, password } = req.body.userData;
 
     handler = (err, result) => {
-        if (!err && result) {
-            var registeredEmail = result.email
-            var registeredPassword = result.password
+        if (!err) {
+            var registeredEmail = result ? result.email : ''
+            var registeredPassword = result ? result.password : ''
 
             if (registeredEmail === email && registeredPassword === password) {
                 console.log('o email e a senha estao de acordo')
 
                 let tokenData = {
-                    id: 101
+                    id: 1
                 }
                 let newToken = jwt.sign(tokenData, 'secret_key_auth_project', { expiresIn: '1m' });
                 res.json({
@@ -26,7 +26,7 @@ router.post('/login', (req, res, next) => {
                 })
 
             } else {
-                console.log('teste')
+                console.log(registeredEmail, ' - ', registeredPassword)
 
                 res.status(401).json({
                     success: false,
@@ -34,6 +34,8 @@ router.post('/login', (req, res, next) => {
                     message: 'Invalid email or password'
                 })
             }
+            console.log(registeredEmail, ' - ', registeredPassword, ' result ->', result)
+
 
             // console.log(result)
         } else {
