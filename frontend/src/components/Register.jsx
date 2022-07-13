@@ -86,41 +86,43 @@ class Register extends Component {
                 progress: undefined,
                 theme: 'colored',
             });
+        } else {
+            fetch(url, {
+                method: "POST",
+                body: JSON.stringify(sendData),
+                headers: { "Content-type": "application/json;charset=UTF-8" }
+            })
+                .then(response => response.json())
+                .then(json => {
+                    if (!json.success) {
+                        toast.success('Register success 😎', {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: 'colored',
+                        });
+                    } else {
+                        toast.warn('Email already registered 😕', {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: 'colored',
+                        })
+                    }
+                })
         }
 
         console.log(JSON.stringify(sendData))
 
-        fetch(url, {
-            method: "POST",
-            body: JSON.stringify(sendData),
-            headers: { "Content-type": "application/json;charset=UTF-8" }
-        })
-            .then(response => response.json())
-            .then(json => {
-                if (!json.success) {
-                    toast.warn('Email already registered 😕', {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: 'colored',
-                    });
-                } else {
-                    toast.success('Register success 😎', {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: 'colored',
-                    })
-                }
-            })
+
     }
     render() {
         return (
