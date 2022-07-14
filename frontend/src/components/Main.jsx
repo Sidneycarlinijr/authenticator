@@ -78,7 +78,6 @@ class Main extends Component {
                             progress: undefined,
                             theme: 'colored',
                         });
-                        console.log('to aqiu')
                         this.props.navigate('/home')
                     } else if (!json.success) {
                         toast.warn('Invalid username or password', {
@@ -118,7 +117,7 @@ class Main extends Component {
                         </div>
                         <div>
                             <Key size={26} className="absolute mt-1" />
-                            <input required onChange={this.handlePassword} className="w-64 h-8 text-sm pl-8" type="password" placeholder='Password'></input>
+                            <input required autoComplete="on" onChange={this.handlePassword} className="w-64 h-8 text-sm pl-8" type="password" placeholder='Password'></input>
                         </div>
                     </div>
                     <div style={{ marginTop: "120px" }}>

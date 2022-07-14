@@ -94,7 +94,7 @@ class Register extends Component {
             })
                 .then(response => response.json())
                 .then(json => {
-                    if (!json.success) {
+                    if (json.success) {
                         toast.success('Register success 😎', {
                             position: "top-right",
                             autoClose: 5000,
@@ -148,11 +148,11 @@ class Register extends Component {
                     </div>
                     <div>
                         <Key size={26} className="absolute mt-1" />
-                        <input required onChange={this.handlePassword} className="w-64 h-8 text-sm mb-1 pl-8" type="password" placeholder='Password'></input>
+                        <input required autoComplete="on" onChange={this.handlePassword} className="w-64 h-8 text-sm mb-1 pl-8" type="password" placeholder='Password'></input>
                     </div>
                     <div>
                         <LockKey size={26} className="absolute mt-1" />
-                        <input required onChange={this.handleConfirmPassword} className="w-64 h-8 text-sm pl-8" type="password" placeholder='Confirm Password'></input>
+                        <input required autoComplete="on" onChange={this.handleConfirmPassword} className="w-64 h-8 text-sm pl-8" type="password" placeholder='Confirm Password'></input>
                     </div>
                 </div>
                 <div className="">

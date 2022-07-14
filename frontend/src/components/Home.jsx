@@ -10,9 +10,9 @@ class Home extends Component {
         this.getUserInfo = this.getUserInfo.bind(this)
 
         this.state = {
-            userName: 'teste',
-            userEmail: 'teste',
-            userPhoneNumber: 'teste'
+            userName: '',
+            userEmail: '',
+            userPhoneNumber: ''
         }
     }
 
@@ -30,18 +30,24 @@ class Home extends Component {
             .then(response => response.json())
             .then(json => {
                 if (json.success) {
+                    this.setState({userName: json.data.userName})
                     this.state.userName = json.data.userName
                     this.state.userEmail = json.data.email
                     this.state.userPhoneNumber = json.data.phoneNumber
+            console.log('tentei o json.success')
 
                 }
             })
+            console.log('tentei o getUserInfo e o email é ', loginEmail)
+    }
+    
+    componentDidMount(){
+        this.getUserInfo()
     }
 
     render() {
         return (
             <div className="grow">
-                <button onClick={this.getUserInfo}>getUserInfo</button>
                 <div className="text-center mt-10">
                     <span className="font-bold text-xl">Authenticator</span>
                     <p className="text-xs font-thin text-slate-400"> Hi {'{name}'}!</p>
