@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 var app = require('../app')
 var jwt = require('jsonwebtoken')
-const db = require('../db')
+const db = require('../db');
+const { json } = require('express');
 
 //Json web token generator response
 router.post('/login', (req, res, next) => {
@@ -46,4 +47,17 @@ router.post('/login', (req, res, next) => {
     db.findUser({ email }, handler)
 
 })
+
+    router.get('/tokenverify', (req, res, next) =>{
+        const token = req.body.token
+
+        jwt.verify(token, 'secret_key_auth_project', (err) =>{
+            if(err){
+                console.log(err)
+        res.json(err)
+
+            }
+        })
+    })
+
 module.exports = router;
