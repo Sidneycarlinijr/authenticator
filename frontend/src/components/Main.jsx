@@ -1,7 +1,8 @@
 import { React, Component } from 'react'
 import { connect } from 'react-redux'
 import { UserCircle, Key } from 'phosphor-react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { withRouter } from './withRouterNavigate';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -17,7 +18,8 @@ class Main extends Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            redirect: false
         }
     }
 
@@ -67,7 +69,7 @@ class Main extends Component {
                 .then(json => {
                     console.log(json)
                     if (json.success) {
-                        localStorage.setItem('authToken', json.token)
+                        sessionStorage.setItem('authToken', json.token)
                         toast.success('Sign In success', {
                             position: "top-right",
                             autoClose: 5000,
@@ -79,7 +81,8 @@ class Main extends Component {
                             theme: 'colored',
                         });
                         this.props.navigate('/home')
-                    } else if (!json.success) {
+                        console.log('tentei o navigate')
+                    } else {
                         toast.warn('Invalid username or password', {
                             position: "top-right",
                             autoClose: 5000,
@@ -96,7 +99,10 @@ class Main extends Component {
             alert('Preencha os campos')
         }
 
-        console.log(loginDataSent, '<-- dados retornados reducer')
+        // console.log(loginDataSent, '<-- dados retornados reducer')
+        console.log(this.state.redirect)
+
+
     }
 
     render() {
@@ -124,9 +130,12 @@ class Main extends Component {
                         <button type="submit" className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
                             Confirm
                         </button>
-                        <button type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                            <Link to="/register">Register</Link>
-                        </button>
+                        <Link to="/register">
+                            <button type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                                Register
+                            </button>
+                        </Link>
+
                     </div>
                 </form>
             </div>
@@ -134,10 +143,7 @@ class Main extends Component {
     }
 }
 
-function WithNavigate(props) {
-    let navigate = useNavigate();
-    return <Main {...props} navigate={navigate} />
-}
+
 
 function mapDispatchToProps(dispatch) {
     return {
@@ -155,4 +161,4 @@ function mapStateToProps(state) {
     })
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WithNavigate)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Main))

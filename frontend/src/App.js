@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 
 import './App.css';
 import Home from './components/Home'
@@ -13,6 +13,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/redirect" element={<Navigate to="/home" />} />
       </Routes>
     </div>
   )

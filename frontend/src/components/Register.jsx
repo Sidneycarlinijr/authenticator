@@ -1,5 +1,6 @@
 import { React, Component } from 'react';
 import { Link } from 'react-router-dom'
+import { withRouter } from './withRouterNavigate';
 import { UserCircle, LockKey, Hash, IdentificationBadge, Key } from 'phosphor-react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -105,6 +106,8 @@ class Register extends Component {
                             progress: undefined,
                             theme: 'colored',
                         });
+                        this.props.navigate('/')
+                        console.log('passei pelo navigate!>..................')
                     } else {
                         toast.warn('Email already registered 😕', {
                             position: "top-right",
@@ -157,15 +160,17 @@ class Register extends Component {
                 </div>
                 <div className="">
                     <button type="submit" className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
-                        Confirm
+                        Return
                     </button>
-                    <button type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                        <Link to="/">Home</Link>
-                    </button>
+                    <Link to="/">
+                        <button type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                            Home
+                        </button>
+                    </Link>
                 </div>
             </form>
         )
     }
 }
 
-export default Register
+export default withRouter(Register)
