@@ -9,6 +9,7 @@ class Home extends Component {
     constructor() {
         super()
         this.getUserInfo = this.getUserInfo.bind(this)
+        this.tokenVerify = this.tokenVerify.bind(this)
         this.logOff = this.logOff.bind(this)
 
         this.state = {
@@ -36,20 +37,40 @@ class Home extends Component {
                     this.state.userName = json.data.userName
                     this.state.userEmail = json.data.email
                     this.state.userPhoneNumber = json.data.phoneNumber
-                    console.log('tentei o json.success')
-
                 }
             })
-        console.log('tentei o getUserInfo e o email é ', loginEmail)
     }
 
-    logOff(){
+    logOff() {
         sessionStorage.removeItem('authToken')
         console.log('logofffffffffffffffff')
     }
-    
+
+    tokenVerify() {
+        var url = "http://localhost:3001/authenticator/tokenverify"
+        var token = sessionStorage.getItem("authToken")
+
+        fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json;charset=UTF-8",
+                "authorization": `Bearer ${token}`
+            }
+        })
+            .then(response => response.json())
+            .then(json => {
+                if (!json.success) {
+                    this.logOff()
+                }
+            })
+        console.log(JSON.stringify(token))
+
+
+    }
+
     componentDidMount() {
         this.getUserInfo()
+        this.tokenVerify()
     }
 
     render() {
@@ -65,10 +86,15 @@ class Home extends Component {
                     <p className="font-bold">Email address: <span className="text-sm font-normal"> {this.state.userEmail} </span> </p>
                     <p className="font-bold">Number: <span className="text-sm font-normal"> {this.state.userPhoneNumber} </span> </p>
                 </div>
-                <div className="mt-28 grow">
+                <div className="mt-32 ml-4 grow">
                     <Link to="/">
-                        <button onClick={this.logOff} className=" text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm h-10 w-72 ml-5 mr-5 text-center dark:focus:ring-yellow-900">
+                        <button onClick={this.logOff} className=" text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm h-10 w-32 mr-1 text-center dark:focus:ring-yellow-900">
                             Return to Login
+                        </button>
+                    </Link>
+                    <Link to="/">
+                        <button onClick={this.tokenVerify} className=" text-white bg-red-600 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm h-10 w-32 ml-1 text-center dark:focus:ring-yellow-900">
+                            Random Action
                         </button>
                     </Link>
                 </div>
