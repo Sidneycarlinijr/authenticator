@@ -22,13 +22,13 @@ class Home extends Component {
         }
     }
 
-    getUserInfo() {
+    async getUserInfo() {
         var loginEmail = {
             email: this.props.email
         }
         var url = "http://localhost:3001/users/search"
 
-        fetch(url, {
+        await fetch(url, {
             method: "POST",
             body: JSON.stringify(loginEmail),
             headers: { "Content-type": "application/json;charset=UTF-8" }
@@ -103,7 +103,7 @@ class Home extends Component {
                         </button>
                     </Link>
                     <button onClick={this.increment} className=" text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-500 font-medium rounded-full text-sm h-10 w-32 ml-1 text-center dark:focus:ring-yellow-900">
-                        Random Action
+                        Increment
                     </button>
                 </div>
             </div>

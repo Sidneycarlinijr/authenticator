@@ -19,7 +19,7 @@ class Main extends Component {
         this.state = {
             email: '',
             password: '',
-            redirect: false
+            isLoggedIn: false
         }
     }
 
@@ -48,20 +48,14 @@ class Main extends Component {
         var email = sendData.userData.email
         var password = sendData.userData.password
         const url = 'http://localhost:3001/authenticator/login'
-
+        const that = this
         if (email && password) {
+            //redux
             this.props.userInfo(sendData)
-
-            var loginDataSent = {
-                userData: {
-                    email: this.props.sentEmail,
-                    password: this.props.sentPassword
-                }
-            }
 
             fetch(url, {
                 method: "POST",
-                body: JSON.stringify(loginDataSent),
+                body: JSON.stringify(sendData),
                 headers: { "Content-type": "application/json;charset=UTF-8" }
             })
                 .then(response => response.json())
@@ -81,7 +75,11 @@ class Main extends Component {
                             theme: 'colored',
                         });
                         this.props.navigate('/home')
-                        console.log('tentei o navigate')
+
+                        
+
+                        console.log(this.state.isLoggedIn)
+                        
                     } else {
                         toast.warn('Invalid username or password', {
                             position: "top-right",
@@ -94,15 +92,15 @@ class Main extends Component {
                             theme: 'colored',
                         })
                     }
+                    this.setState({
+                        isLoggedIn: true
+                    })
+                    console.log('setei o isLoggedIn -> ', this)
+
                 })
         } else {
             alert('Preencha os campos')
         }
-
-        // console.log(loginDataSent, '<-- dados retornados reducer')
-        console.log(this.state.redirect)
-
-
     }
 
     render() {

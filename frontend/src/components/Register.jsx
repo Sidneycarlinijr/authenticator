@@ -69,9 +69,6 @@ class Register extends Component {
             }
         }
 
-        var userName = sendData.userData.userName
-        var phoneNumber = sendData.userData.phoneNumber
-        var email = sendData.userData.email
         var password = sendData.userData.password
         var confirmPassword = sendData.userData.confirmPassword
         const url = 'http://localhost:3001/users/register'
@@ -122,11 +119,8 @@ class Register extends Component {
                     }
                 })
         }
-
-        console.log(JSON.stringify(sendData))
-
-
     }
+    
     render() {
         return (
             <form onSubmit={this.handleSubmit} className="flex flex-col flex-wrap justify-between p-10 items-center" >
@@ -160,7 +154,7 @@ class Register extends Component {
                 </div>
                 <div className="">
                     <button type="submit" className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
-                        Return
+                        Confirm
                     </button>
                     <Link to="/">
                         <button type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
