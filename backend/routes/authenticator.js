@@ -3,7 +3,6 @@ var router = express.Router();
 var app = require('../app')
 var jwt = require('jsonwebtoken')
 const db = require('../db');
-const { json } = require('express');
 
 //Json web token generator response
 router.post('/login', (req, res, next) => {
@@ -48,16 +47,32 @@ router.post('/login', (req, res, next) => {
 
 })
 
-    router.get('/tokenverify', (req, res, next) =>{
-        const token = req.body.token
+/* const token = req.body.token
+    token enviado via headers com a chave authorization -> padrao + necessidade por
+    ser um get 
+    O Bearer trafega um token no Header da requisição e o Basic um usuário e senha
 
-        jwt.verify(token, 'secret_key_auth_project', (err) =>{
-            if(err){
-                console.log(err)
-        res.json(err)
+    */
 
-            }
-        })
+router.get('/tokenverify', (req, res, next) => {
+    
+    const token = req.headers['authorization'].split(' ')[1];
+
+    // res.json(token)
+
+    jwt.verify(token, 'secret_key_auth_project', (err) => {
+        if (err) {
+            console.log(err)
+            res.json({
+                success: false,
+                message: err.message
+            })
+        } else {
+            res.json({
+                success: true,
+            })
+        }
     })
+})
 
 module.exports = router;
