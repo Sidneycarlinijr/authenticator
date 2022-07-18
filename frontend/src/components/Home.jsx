@@ -15,6 +15,7 @@ class Home extends Component {
         this.logOff = this.logOff.bind(this)
         this.increment = this.increment.bind(this)
         this.tokenRefresh = this.tokenRefresh.bind(this)
+        this.isLoggedIn = this.isLoggedIn.bind(this)
 
         this.state = {
             userName: '',
@@ -48,6 +49,10 @@ class Home extends Component {
     increment() {
         this.setState({ numberToIncrement: this.state.numberToIncrement + 1 })
         this.tokenVerify()
+    }
+
+    isLoggedIn() {
+        !(sessionStorage.getItem('authToken')) && this.props.navigate('/')
     }
 
     logOff() {
@@ -95,7 +100,7 @@ class Home extends Component {
 
     componentDidMount() {
         this.getUserInfo()
-        this.tokenVerify()
+        this.isLoggedIn()
     }
 
     render() {
