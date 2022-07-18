@@ -14,12 +14,13 @@ router.post('/login', (req, res, next) => {
 
             if (registeredEmail === email && registeredPassword === password) {
                 var tokenData = {
-                    id: 1
+                    id: 1,
+                    email: registeredEmail
                 }
                 var newToken = jwt.sign(tokenData, 'secret_key_auth_project', { expiresIn: '1m' });
                 res.json({
                     success: true,
-                    token: newToken
+                    token: newToken,
                 })
 
             } else {
@@ -37,6 +38,7 @@ router.post('/login', (req, res, next) => {
         }
     }
 
+    //exec function no repo db/index.js
     db.findUser({ email }, handler)
 
 })
@@ -49,10 +51,7 @@ router.post('/login', (req, res, next) => {
     */
 
 router.get('/tokenverify', (req, res, next) => {
-
     const token = req.headers['authorization'].split(' ')[1];
-
-    // res.json(token)
 
     jwt.verify(token, 'secret_key_auth_project', (err) => {
         if (err) {
@@ -69,7 +68,6 @@ router.get('/tokenverify', (req, res, next) => {
                 success: true,
                 token: newToken
             })
-            console.log('token gerado')
         }
     })
 })

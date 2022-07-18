@@ -15,6 +15,7 @@ router.post('/register', (req, res, next) => {
   };
 
   if (userName || phoneNumber || email || password) {
+
     const registerHandler = (err, result) => {
       var registeredEmail = result ? result.email : '';
 
@@ -68,15 +69,15 @@ router.post('/register', (req, res, next) => {
 
 router.post('/search', (req, res, next) => {
   const email = req.body
-  const searchHandler = (err, result) => {
 
+  const searchHandler = (err, result) => {
     if (!err) {
       if (result) {
         res.json({
           success: true,
           data: result,
         })
-      } else {
+      } else{
         res.json({
           success: false,
           code: 'EMPTY_USER_INFORMATION'
