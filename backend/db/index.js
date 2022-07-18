@@ -10,27 +10,16 @@ MongoClient.connect(mongoUrl, (err, client) => {
 
     db = client.db('authenticator')
     collection = db.collection('users')
-
-    // console.log('MongoDB - Conectado', db, collection)
 });
 
 module.exports = {
     userRegister: (userInfo) => {
         collection.insertOne(userInfo)
-        console.log('to no userRegister tentando registrar!')
     },
-    
+
     findUser: (data, handler) => {
         collection.findOne(data, (err, result) => {
             handler(err, result);
         })
     }
-
-
-    // userRegister: (data, handler) => {
-    //     console.log('cheguei no index do db')
-    //     collection.insertOne(data, (err, result) =>{
-    //         handler(err, result);
-    //     })
-    // }
 }
