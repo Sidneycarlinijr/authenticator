@@ -104,7 +104,6 @@ class Register extends Component {
                             theme: 'colored',
                         });
                         this.props.navigate('/')
-                        console.log('passei pelo navigate!>..................')
                     } else {
                         toast.warn('Email already registered 😕', {
                             position: "top-right",
@@ -120,7 +119,7 @@ class Register extends Component {
                 })
         }
     }
-    
+
     render() {
         return (
             <form onSubmit={this.handleSubmit} className="flex flex-col flex-wrap justify-between p-10 items-center" >

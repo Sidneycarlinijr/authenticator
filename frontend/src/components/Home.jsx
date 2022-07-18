@@ -5,7 +5,7 @@ import { withRouter } from "./withRouterNavigate"
 
 class Home extends Component {
     //pegar email pelo redux
-    //no fim inserir botao para retornar a tela inicial
+    //no fim inserir botao para retornar a tela inicial (LogOut)
 
     constructor() {
         super()
@@ -13,6 +13,7 @@ class Home extends Component {
         this.tokenVerify = this.tokenVerify.bind(this)
         this.logOff = this.logOff.bind(this)
         this.increment = this.increment.bind(this)
+        this.tokenRefresh = this.tokenRefresh.bind(this)
 
         this.state = {
             userName: '',
@@ -50,7 +51,10 @@ class Home extends Component {
 
     logOff() {
         sessionStorage.removeItem('authToken')
-        console.log('logofffffffffffffffff')
+    }
+
+    tokenRefresh(token) {
+        sessionStorage.setItem('authToken', token)
     }
 
     tokenVerify() {
@@ -70,7 +74,7 @@ class Home extends Component {
                     this.logOff()
                     this.props.navigate('/')
                 } else {
-                    console.log('tente novamente em poucos')
+                    this.tokenRefresh(json.token)
                 }
             })
     }

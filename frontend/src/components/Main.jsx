@@ -61,7 +61,6 @@ class Main extends Component {
                 .then(response => response.json())
                 //salvar token no local storage
                 .then(json => {
-                    console.log(json)
                     if (json.success) {
                         sessionStorage.setItem('authToken', json.token)
                         toast.success('Sign In success', {
@@ -75,11 +74,6 @@ class Main extends Component {
                             theme: 'colored',
                         });
                         this.props.navigate('/home')
-
-                        
-
-                        console.log(this.state.isLoggedIn)
-                        
                     } else {
                         toast.warn('Invalid username or password', {
                             position: "top-right",
@@ -95,8 +89,6 @@ class Main extends Component {
                     this.setState({
                         isLoggedIn: true
                     })
-                    console.log('setei o isLoggedIn -> ', this)
-
                 })
         } else {
             alert('Preencha os campos')
