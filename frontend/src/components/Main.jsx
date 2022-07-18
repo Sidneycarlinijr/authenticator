@@ -109,7 +109,7 @@ class Main extends Component {
                         <p className="text-center">Login</p>
                         <div>
                             <UserCircle size={26} className="absolute mt-1"></UserCircle>
-                            <input required onChange={this.handleEmail} className="w-64 h-8 text-sm mb-1 pl-8" type="text" placeholder='Email Address'></input>
+                            <input required onChange={this.handleEmail} className="w-64 h-8 text-sm mb-1 pl-8" type="email" placeholder='Email Address'></input>
                         </div>
                         <div>
                             <Key size={26} className="absolute mt-1" />

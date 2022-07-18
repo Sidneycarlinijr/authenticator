@@ -4,7 +4,7 @@ import { withRouter } from './withRouterNavigate';
 import { UserCircle, LockKey, Hash, IdentificationBadge, Key } from 'phosphor-react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import ReactInputMask from "react-input-mask";
 
 class Register extends Component {
 
@@ -36,6 +36,7 @@ class Register extends Component {
         this.setState({
             phoneNumber: e.target.value
         })
+        console.log(e.target.value)
     }
 
     handleEmail(e) {
@@ -136,7 +137,7 @@ class Register extends Component {
                     </div>
                     <div>
                         <Hash size={26} className="absolute mt-1" />
-                        <input required onChange={this.handlePhoneNumber} className="w-64 h-8 text-sm mb-1 pl-8" type="number" placeholder='Mobile Number'></input>
+                        <ReactInputMask required onChange={this.handlePhoneNumber} className="w-64 h-8 text-sm mb-1 pl-8" mask="(99) 9 9999-9999" placeholder="Phone Number"></ReactInputMask>
                     </div>
                     <div>
                         <UserCircle size={26} className="absolute mt-1" />
