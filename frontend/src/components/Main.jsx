@@ -125,7 +125,6 @@ class Main extends Component {
                                 Register
                             </button>
                         </Link>
-
                     </div>
                 </form>
             </div>

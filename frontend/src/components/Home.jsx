@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import jwt_decode from "jwt-decode"
 import { withRouter } from "./withRouterNavigate"
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -25,13 +26,23 @@ class Home extends Component {
         }
     }
 
-    async getUserInfo() {
+    getUserInfo() {
+        var token = sessionStorage.getItem('authToken')
+        var decoder = jwt_decode(token)
+
+        console.log(decoder)
+
         var loginEmail = {
-            email: this.props.email
+            email: decoder.email
         }
+        
+        
+        
+        
+        
         var url = "http://localhost:3001/users/search"
 
-        await fetch(url, {
+        fetch(url, {
             method: "POST",
             body: JSON.stringify(loginEmail),
             headers: { "Content-type": "application/json;charset=UTF-8" }
@@ -99,8 +110,8 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        this.getUserInfo()
         this.isLoggedIn()
+        this.getUserInfo()
     }
 
     render() {
