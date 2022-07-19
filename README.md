@@ -4,7 +4,7 @@
 
 </br>
 
-Tecnologias e técnicas utilizadas: 
+###Tecnologias e técnicas utilizadas: 
 - [React](https://pt-br.reactjs.org/), 
 - [Redux](https://redux.js.org/), 
 - [Node.js](https://nodejs.org/en/), 
