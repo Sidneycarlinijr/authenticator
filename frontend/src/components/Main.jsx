@@ -48,7 +48,6 @@ class Main extends Component {
         var email = sendData.userData.email
         var password = sendData.userData.password
         const url = 'http://localhost:3001/authenticator/login'
-        const that = this
         if (email && password) {
             //redux
             this.props.userInfo(sendData)
@@ -96,6 +95,9 @@ class Main extends Component {
     }
 
     render() {
+        
+        sessionStorage.removeItem('authToken')
+        
         return (
 
             <div className="flex flex-between flex-col items-center">

@@ -28,18 +28,16 @@ class Home extends Component {
 
     getUserInfo() {
         var token = sessionStorage.getItem('authToken')
-        var decoder = jwt_decode(token)
-
-        console.log(decoder)
+        try {
+            var decoder = jwt_decode(token)
+        } catch (err) {
+            return
+        }
 
         var loginEmail = {
             email: decoder.email
         }
-        
-        
-        
-        
-        
+
         var url = "http://localhost:3001/users/search"
 
         fetch(url, {
@@ -73,6 +71,8 @@ class Home extends Component {
     tokenRefresh(token) {
         sessionStorage.setItem('authToken', token)
         var tokenEndInfo = token.substr(token.length - 5, 5)
+
+        console.log(token)
 
         toast.success(`Token refresh success - New token info: ${tokenEndInfo}`, {
             position: "top-right",
