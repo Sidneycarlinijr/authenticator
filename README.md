@@ -2,9 +2,19 @@
 
 <p align="center"><strong>Authenticator</strong> é um serviço web capaz de autenticar e validar as requisições do usuário via Token JWT.</p>
 
-</br></br>
+</br>
 
-Tecnologias e técnicas utilizadas: [React](https://pt-br.reactjs.org/), [Redux](https://redux.js.org/), [Node.js](https://nodejs.org/en/), [MongoDB](https://www.mongodb.com/), [ExpressJS](https://expressjs.com/), [TailwindCSS](https://tailwindcss.com/), [React-Toastify](https://npm.io/package/react-toastify). O projeto teve foco em componentes do tipo Class.
+Tecnologias e técnicas utilizadas: 
+- [React](https://pt-br.reactjs.org/), 
+- [Redux](https://redux.js.org/), 
+- [Node.js](https://nodejs.org/en/), 
+- [MongoDB](https://www.mongodb.com/), 
+- [ExpressJS](https://expressjs.com/), 
+- [TailwindCSS](https://tailwindcss.com/), 
+- [React-Toastify](https://npm.io/package/react-toastify). </br>
+O projeto teve foco em componentes do tipo Class.
+
+</br></br>
 
 ### Features
 
@@ -20,8 +30,9 @@ Tecnologias e técnicas utilizadas: [React](https://pt-br.reactjs.org/), [Redux]
 ### Pré-requisitos
 
 Antes de começar, você precisará das seguintes ferramentas:
-<p> - [Node.js](https://nodejs.org/en/).</p>
-<p> - Terminal da sua preferência</p>
+</br>
+[Node.js](https://nodejs.org/en/).
+<p>Terminal da sua preferência</p>
 
 
 Opcional:
