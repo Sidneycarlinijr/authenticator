@@ -20,8 +20,8 @@ Tecnologias e técnicas utilizadas: [React](https://pt-br.reactjs.org/), [Redux]
 ### Pré-requisitos
 
 Antes de começar, você precisará das seguintes ferramentas:
-[Node.js](https://nodejs.org/en/).
-Terminal da sua preferência
+<p> - [Node.js](https://nodejs.org/en/).</p>
+<p> - Terminal da sua preferência</p>
 
 
 Opcional:
