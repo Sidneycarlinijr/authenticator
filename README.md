@@ -4,7 +4,7 @@
 
 </br></br>
 
-Tecnologias e técnicas utilizadas: [React](https://pt-br.reactjs.org/), [Redux](https://redux.js.org/), [Node.js](https://nodejs.org/en/), [MongoDB](https://www.mongodb.com/), [ExpressJS](https://expressjs.com/), [TailwindCSS](https://tailwindcss.com/), [React-Toastify](https://npm.io/package/react-toastify), componentes de tipo Class.
+Tecnologias e técnicas utilizadas: [React](https://pt-br.reactjs.org/), [Redux](https://redux.js.org/), [Node.js](https://nodejs.org/en/), [MongoDB](https://www.mongodb.com/), [ExpressJS](https://expressjs.com/), [TailwindCSS](https://tailwindcss.com/), [React-Toastify](https://npm.io/package/react-toastify). O projeto teve foco em componentes do tipo Class.
 
 ### Features
 
@@ -15,10 +15,14 @@ Tecnologias e técnicas utilizadas: [React](https://pt-br.reactjs.org/), [Redux]
 - [x] Expiração do Token
 - [x] Refresh do Token
 
+</br>
+
 ### Pré-requisitos
 
 Antes de começar, você precisará das seguintes ferramentas:
-[Node.js](https://nodejs.org/en/). 
+[Node.js](https://nodejs.org/en/).
+Terminal da sua preferência
+
 
 Opcional:
 
