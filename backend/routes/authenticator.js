@@ -52,7 +52,9 @@ router.post('/login', (req, res, next) => {
 
 router.get('/tokenverify', (req, res, next) => {
     const token = req.headers['authorization'].split(' ')[1];
-
+    var decoded = jwt.decode(token)
+    var userEmail = decoded.email
+    
     jwt.verify(token, 'secret_key_auth_project', (err) => {
         if (err) {
             res.json({
@@ -61,12 +63,13 @@ router.get('/tokenverify', (req, res, next) => {
             })
         } else {
             var tokenData = {
-                id: 1
+                id: 1,
+                email: userEmail
             }
             var newToken = jwt.sign(tokenData, 'secret_key_auth_project', { expiresIn: '1m' });
             res.json({
                 success: true,
-                token: newToken
+                token: newToken,
             })
         }
     })
