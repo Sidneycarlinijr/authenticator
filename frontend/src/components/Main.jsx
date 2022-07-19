@@ -19,7 +19,6 @@ class Main extends Component {
         this.state = {
             email: '',
             password: '',
-            isLoggedIn: false
         }
     }
 
@@ -58,7 +57,7 @@ class Main extends Component {
                 headers: { "Content-type": "application/json;charset=UTF-8" }
             })
                 .then(response => response.json())
-                //salvar token no local storage
+                //salvar token no session storage
                 .then(json => {
                     if (json.success) {
                         sessionStorage.setItem('authToken', json.token)
@@ -85,9 +84,6 @@ class Main extends Component {
                             theme: 'colored',
                         })
                     }
-                    this.setState({
-                        isLoggedIn: true
-                    })
                 })
         } else {
             alert('Preencha os campos')

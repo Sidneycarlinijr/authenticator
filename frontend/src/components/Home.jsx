@@ -16,7 +16,6 @@ class Home extends Component {
         this.logOff = this.logOff.bind(this)
         this.increment = this.increment.bind(this)
         this.tokenRefresh = this.tokenRefresh.bind(this)
-        this.isLoggedIn = this.isLoggedIn.bind(this)
 
         this.state = {
             userName: '',
@@ -60,9 +59,11 @@ class Home extends Component {
         this.tokenVerify()
     }
 
-    isLoggedIn() {
-        !(sessionStorage.getItem('authToken')) && this.props.navigate('/')
-    }
+    // isLoggedIn() {
+    //     !(sessionStorage.getItem('authToken')) && this.props.navigate('/')
+
+    //     console.log('isloogggggedddddddin????????????')
+    // }
 
     logOff() {
         sessionStorage.removeItem('authToken')
@@ -71,8 +72,6 @@ class Home extends Component {
     tokenRefresh(token) {
         sessionStorage.setItem('authToken', token)
         var tokenEndInfo = token.substr(token.length - 5, 5)
-
-        console.log(token)
 
         toast.success(`Token refresh success - New token info: ${tokenEndInfo}`, {
             position: "top-right",
@@ -110,7 +109,6 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        this.isLoggedIn()
         this.getUserInfo()
     }
 
