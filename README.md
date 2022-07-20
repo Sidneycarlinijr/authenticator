@@ -28,6 +28,7 @@ O projeto teve foco em componentes do tipo Class.
 - [x] Validação do Token nas requisições
 - [x] Expiração do Token
 - [x] Refresh do Token
+- [x] Timer (Countdown) indicando o tempo para expirar o Token JWT, de acordo com o valor informado na criação do Token.
 
 </br></br>
 
