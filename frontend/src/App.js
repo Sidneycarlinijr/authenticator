@@ -9,8 +9,6 @@ import Register from './components/Register';
 const AuthWrapper = () => {
   const location = useLocation();
   const token = sessionStorage.getItem("authToken");
-
-  console.log(token)
   
   return token ? (
     <Home />
@@ -23,15 +21,11 @@ function App() {
   return (
     <div className="App rounded bg-white-100 flex justify-center">
       <Routes>
-
         <Route element={<AuthWrapper />}>
           <Route path="/home" element={<Home />} />
         </Route>
-
         <Route path="/" element={<Main />} />
         <Route path="/register" element={<Register />} />
-        {/* <Route path="/home" element={<Home />} /> */}
-
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>

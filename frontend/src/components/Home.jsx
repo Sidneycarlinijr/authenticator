@@ -59,12 +59,6 @@ class Home extends Component {
         this.tokenVerify()
     }
 
-    // isLoggedIn() {
-    //     !(sessionStorage.getItem('authToken')) && this.props.navigate('/')
-
-    //     console.log('isloogggggedddddddin????????????')
-    // }
-
     logOff() {
         sessionStorage.removeItem('authToken')
     }

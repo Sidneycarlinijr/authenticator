@@ -36,7 +36,6 @@ class Register extends Component {
         this.setState({
             phoneNumber: e.target.value
         })
-        console.log(e.target.value)
     }
 
     handleEmail(e) {
