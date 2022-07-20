@@ -3,10 +3,9 @@
 @tailwind utilities;
 
 .App{
-  width: 300px;
-  height: 400px;
+  width: 400px;
+  height: 500px;
 }
-
 /* input[type='text'] {
   background: url(./assets/user-circle.png) no-repeat scroll 7px 7px;
   padding-left:30px;

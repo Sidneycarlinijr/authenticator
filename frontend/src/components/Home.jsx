@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode"
 import { withRouter } from "./withRouterNavigate"
 import { ToastContainer, toast } from 'react-toastify';
-import { toHaveDescription } from "@testing-library/jest-dom/dist/matchers";
 
 class Home extends Component {
     constructor() {
@@ -102,7 +101,7 @@ class Home extends Component {
         var token = sessionStorage.getItem("authToken")
 
         this.setTimer()
-        
+
         fetch(url, {
             method: "GET",
             headers: {
@@ -155,30 +154,32 @@ class Home extends Component {
             <div className="grow">
                 <ToastContainer />
                 <div className="text-center mt-10">
-                    <span className="font-bold text-xl">Authenticator</span>
-                    <p className="text-xs font-thin text-slate-400"> Hi {this.state.userName}!</p>
+                    <span className="font-bold text-3xl">Authenticator</span>
+                    <p className="text-sm font-thin text-slate-400"> Hi {this.state.userName}!</p>
                 </div>
                 <div className="ml-5 mt-5">
-                    <p className="font-bold">Name: <span className="text-sm font-normal"> {this.state.userName} </span> </p>
-                    <p className="font-bold">Email address: <span className="text-sm font-normal"> {this.state.userEmail} </span> </p>
-                    <p className="font-bold">Number: <span className="text-sm font-normal"> {this.state.userPhoneNumber} </span> </p>
+                    <p className="font-bold">Name: <span className="text-base font-normal"> {this.state.userName} </span> </p>
+                    <p className="font-bold">Email address: <span className="text-base font-normal"> {this.state.userEmail} </span> </p>
+                    <p className="font-bold">Number: <span className="text-base font-normal"> {this.state.userPhoneNumber} </span> </p>
                 </div>
                 <div className="mt-5 text-center justify-center">
-                    Valor: {this.state.numberToIncrement}
+                    <p className="text-base"> Valor: {this.state.numberToIncrement}</p>
                 </div>
-                <div className="mt-16 ml-4 grow">
+                <div style={{ marginTop: "120px" }} className="mt-16 ml-10 grow">
                     <Link to="/">
-                        <button onClick={this.logOff} className=" text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm h-10 w-32 mr-1 text-center dark:focus:ring-yellow-900">
+                        <button onClick={this.logOff} className=" text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-xl h-10 w-40 mr-1 text-center dark:focus:ring-yellow-900">
                             Return to Login
                         </button>
                     </Link>
-                    <button onClick={this.increment} className=" text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-500 font-medium rounded-full text-sm h-10 w-32 ml-1 text-center dark:focus:ring-yellow-900">
+                    <button onClick={this.increment} className=" text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-500 font-medium rounded-full text-xl h-10 w-36 ml-1 text-center dark:focus:ring-yellow-900">
                         Increment
                     </button>
-                    {minutes === 0 && seconds === 0
-                        ? <h1>Token Expired!</h1>
-                        : <h1>Token expires in: <strong>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</strong></h1>
-                    }
+                    <div className="mt-12">
+                        {minutes === 0 && seconds === 0
+                            ? <h1>Token Expired!</h1>
+                            : <h1>Token expires in: <strong>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</strong></h1>
+                        }
+                    </div>
                 </div>
             </div>
         )
