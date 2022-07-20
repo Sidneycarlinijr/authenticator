@@ -3,6 +3,7 @@ var router = express.Router();
 var jwt = require('jsonwebtoken')
 const db = require('../db');
 
+var expTime = 90
 //Json web token generator response
 router.post('/login', (req, res, next) => {
     const { email, password } = req.body.userData;
@@ -15,9 +16,10 @@ router.post('/login', (req, res, next) => {
             if (registeredEmail === email && registeredPassword === password) {
                 var tokenData = {
                     id: 1,
-                    email: registeredEmail
+                    email: registeredEmail,
+                    expTime: expTime
                 }
-                var newToken = jwt.sign(tokenData, 'secret_key_auth_project', { expiresIn: '1m' });
+                var newToken = jwt.sign(tokenData, 'secret_key_auth_project', { expiresIn: expTime });
                 res.json({
                     success: true,
                     token: newToken,
@@ -46,9 +48,7 @@ router.post('/login', (req, res, next) => {
 /* const token = req.body.token
     token enviado via header com a chave authorization -> padrao + necessidade por
     ser um get 
-    O Bearer trafega um token no Header da requisição e o Basic um usuário e senha
-
-    */
+    O Bearer trafega um token no Header da requisição e o Basic um usuário e senha */
 
 router.get('/tokenverify', (req, res, next) => {
     const token = req.headers['authorization'].split(' ')[1];
@@ -64,9 +64,10 @@ router.get('/tokenverify', (req, res, next) => {
         } else {
             var tokenData = {
                 id: 1,
-                email: userEmail
+                email: userEmail,
+                expTime: expTime
             }
-            var newToken = jwt.sign(tokenData, 'secret_key_auth_project', { expiresIn: '1m' });
+            var newToken = jwt.sign(tokenData, 'secret_key_auth_project', { expiresIn: expTime });
             res.json({
                 success: true,
                 token: newToken,
