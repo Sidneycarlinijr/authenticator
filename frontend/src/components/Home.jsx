@@ -6,9 +6,6 @@ import { withRouter } from "./withRouterNavigate"
 import { ToastContainer, toast } from 'react-toastify';
 
 class Home extends Component {
-    //pegar email pelo redux
-    //no fim inserir botao para retornar a tela inicial (LogOut)
-
     constructor() {
         super()
         this.getUserInfo = this.getUserInfo.bind(this)
