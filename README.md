@@ -27,17 +27,47 @@ O projeto teve foco em componentes do tipo Class.
 
 </br>
 
+<h2 align="center">Building</h2>
+
 ### Pré-requisitos
 
 Antes de começar, você precisará das seguintes ferramentas:
 </br>
-[Node.js](https://nodejs.org/en/).
-<p>Terminal da sua preferência</p>
+- [Node.js](https://nodejs.org/en/). 
+- [MongoDB](https://www.mongodb.com/try/download/community)
+- Terminal de sua preferência
 
 
-Opcional:
+<h4>Opcional</h4>
 
-[MongoDB Compass](https://www.mongodb.com/pt-br/products/compass)(Interface gráfica do Mongo)
+- [MongoDB Compass](https://www.mongodb.com/pt-br/products/compass)(Interface gráfica do Mongo)
 
 
+### Iniciando o Projeto
 
+```bash
+# Clone este repositório
+$ git clone <https://github.com/Sidneycarlinijr/authenticator.git>
+
+# Acesse a pasta do backend
+$ cd backend
+
+# Instale as dependências
+$ npm install
+
+# Inicie a aplicação
+$ npm start
+
+### Iniciando o Front End
+
+# Retorne para a pasta authenticator
+$ cd -
+
+# Acesse a pasta do frontend
+$ cd frontend
+
+# Instale as dependências
+$ npm install
+
+# Inicie a aplicação
+$ npm start
