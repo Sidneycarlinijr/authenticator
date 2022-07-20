@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode"
 import { withRouter } from "./withRouterNavigate"
 import { ToastContainer, toast } from 'react-toastify';
+import { toHaveDescription } from "@testing-library/jest-dom/dist/matchers";
 
 class Home extends Component {
     constructor() {
@@ -13,28 +14,34 @@ class Home extends Component {
         this.logOff = this.logOff.bind(this)
         this.increment = this.increment.bind(this)
         this.tokenRefresh = this.tokenRefresh.bind(this)
+        this.setTimer = this.setTimer.bind(this)
 
         this.state = {
             userName: '',
             userEmail: '',
             userPhoneNumber: '',
-            numberToIncrement: 0
+            numberToIncrement: 0,
+            decoder: {},
+            expTime: 0,
+            minutes: 0,
+            seconds: 0,
         }
     }
 
     getUserInfo() {
         var token = sessionStorage.getItem('authToken')
         try {
-            var decoder = jwt_decode(token)
+            this.state.decoder = jwt_decode(token)
         } catch (err) {
             return
         }
 
         var loginEmail = {
-            email: decoder.email
+            email: this.state.decoder.email
         }
-
         var url = "http://localhost:3001/users/search"
+
+        this.setTimer()
 
         fetch(url, {
             method: "POST",
@@ -51,6 +58,18 @@ class Home extends Component {
             })
     }
 
+    setTimer() {
+        var token = sessionStorage.getItem('authToken')
+        try {
+            this.state.decoder = jwt_decode(token)
+        } catch (err) {
+            return
+        }
+        this.state.expTime = this.state.decoder.expTime
+        this.state.minutes = Math.floor(this.state.expTime / 60)
+        this.state.seconds = this.state.expTime - this.state.minutes * 60
+    }
+
     increment() {
         this.setState({ numberToIncrement: this.state.numberToIncrement + 1 })
         this.tokenVerify()
@@ -63,6 +82,7 @@ class Home extends Component {
     tokenRefresh(token) {
         sessionStorage.setItem('authToken', token)
         var tokenEndInfo = token.substr(token.length - 5, 5)
+        this.state.expTime = this.state.decoder.expTime
 
         toast.success(`Token refresh success - New token info: ${tokenEndInfo}`, {
             position: "top-right",
@@ -81,6 +101,8 @@ class Home extends Component {
         var url = "http://localhost:3001/authenticator/tokenverify"
         var token = sessionStorage.getItem("authToken")
 
+        this.setTimer()
+        
         fetch(url, {
             method: "GET",
             headers: {
@@ -101,9 +123,34 @@ class Home extends Component {
 
     componentDidMount() {
         this.getUserInfo()
+
+        this.myInterval = setInterval(() => {
+            const { seconds, minutes } = this.state
+
+            if (seconds > 0) {
+                this.setState(({ seconds }) => ({
+                    seconds: seconds - 1
+                }))
+            }
+            if (seconds === 0) {
+                if (minutes === 0) {
+                    clearInterval(this.myInterval)
+                } else {
+                    this.setState(({ minutes }) => ({
+                        minutes: minutes - 1,
+                        seconds: 59
+                    }))
+                }
+            }
+        }, 1000)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.myInterval)
     }
 
     render() {
+        const { minutes, seconds } = this.state
         return (
             <div className="grow">
                 <ToastContainer />
@@ -128,6 +175,10 @@ class Home extends Component {
                     <button onClick={this.increment} className=" text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-500 font-medium rounded-full text-sm h-10 w-32 ml-1 text-center dark:focus:ring-yellow-900">
                         Increment
                     </button>
+                    {minutes === 0 && seconds === 0
+                        ? <h1>Token Expired!</h1>
+                        : <h1>Token expires in: <strong>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</strong></h1>
+                    }
                 </div>
             </div>
         )
