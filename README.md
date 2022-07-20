@@ -6,14 +6,15 @@
 
 ### Tecnologias e técnicas utilizadas: 
 
-- [React](https://pt-br.reactjs.org/)
-- [React Router DOM v6](https://reactrouter.com/docs/en/v6/getting-started/overview)
-- [Phospor icons](https://phosphoricons.com/)
+- [React](https://pt-br.reactjs.org/),
+- [React Router DOM v6](https://reactrouter.com/docs/en/v6/getting-started/overview),
 - [Redux](https://redux.js.org/), 
+- [Phospor icons](https://phosphoricons.com/),
 - [TailwindCSS](https://tailwindcss.com/), 
 - [React-Toastify](https://npm.io/package/react-toastify),
 - [Node.js](https://nodejs.org/en/), 
-- [MongoDB](https://www.mongodb.com/), 
+- [MongoDB](https://www.mongodb.com/),
+- [Json Web Token](https://jwt.io/) + CORS + sessionStorage,
 - [ExpressJS](https://expressjs.com/). </br>
 O projeto teve foco em componentes do tipo Class.
 
@@ -75,7 +76,6 @@ $ npm install
 # Inicie a aplicação
 $ npm start
 ```
-</br>
 
 ### Utilizando o MongoDBCompass:
 
