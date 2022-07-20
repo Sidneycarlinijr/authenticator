@@ -36,8 +36,8 @@ O projeto teve foco em componentes do tipo Class.
 
 Antes de começar, você precisará das seguintes ferramentas:
 </br>
-- [Node.js](https://nodejs.org/en/). 
-- [MongoDB](https://www.mongodb.com/try/download/community)
+- [Node.js](https://nodejs.org/en/) Versão utilizada: 16.16.0. 
+- [MongoDB](https://www.mongodb.com/try/download/community) Versão utilizada: 6.0.0
 - Terminal de sua preferência
 
 
@@ -74,3 +74,16 @@ $ npm install
 
 # Inicie a aplicação
 $ npm start
+```
+</br>
+
+### Utilizando o MongoDBCompass:
+
+Ao inicializar o Compass, a Connection String/ URI a se utilizar é: mongodb://localhost:27017 (padrão)
+
+- Com o projeto Authenticator aberto, crie um registro de usuário. 
+- Ao registrar um usuário, o Mongo deverá automaticamente criar uma nova collection, encontrada conforme imagem: 
+
+
+![MongoDB Example](https://user-images.githubusercontent.com/56966244/179994233-300c7bf9-aeb5-4ec2-988c-f6a9c02443a0.png)
+
