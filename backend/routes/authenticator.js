@@ -3,7 +3,7 @@ var router = express.Router();
 var jwt = require('jsonwebtoken')
 const db = require('../db');
 
-var expTime = 90
+var expTime = 30
 //Json web token generator response
 router.post('/login', (req, res, next) => {
     const { email, password } = req.body.userData;
