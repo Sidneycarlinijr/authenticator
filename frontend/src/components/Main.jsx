@@ -9,7 +9,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import sendUserInfo from '../store/action/userInfo'
 
 class Main extends Component {
-
     constructor() {
         super()
         this.handleSubmit = this.handleSubmit.bind(this)

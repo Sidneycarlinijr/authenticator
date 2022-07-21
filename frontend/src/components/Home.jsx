@@ -24,6 +24,7 @@ class Home extends Component {
             expTime: 0,
             minutes: 0,
             seconds: 0,
+            tokenEndInfo: '',
         }
     }
 
@@ -53,17 +54,20 @@ class Home extends Component {
                     this.setState({ userName: json.data.userName })
                     this.setState({ userEmail: json.data.email })
                     this.setState({ userPhoneNumber: json.data.phoneNumber })
+                    this.tokenVerify()
                 }
             })
     }
 
     setTimer() {
         var token = sessionStorage.getItem('authToken')
+        const secondsSinceEpoch = Math.round(Date.now() / 1000)
         try {
             this.state.decoder = jwt_decode(token)
         } catch (err) {
             return
         }
+
         this.state.expTime = this.state.decoder.expTime
         this.state.minutes = Math.floor(this.state.expTime / 60)
         this.state.seconds = this.state.expTime - this.state.minutes * 60
@@ -79,20 +83,23 @@ class Home extends Component {
     }
 
     tokenRefresh(token) {
-        sessionStorage.setItem('authToken', token)
-        var tokenEndInfo = token.substr(token.length - 5, 5)
-        this.state.expTime = this.state.decoder.expTime
+        if (!(this.state.tokenEndInfo === token.substr(token.length - 5, 5))) {
+            this.state.tokenEndInfo = token.substr(token.length - 5, 5)
+            sessionStorage.setItem('authToken', token)
 
-        toast.success(`Token refresh success - New token info: ${tokenEndInfo}`, {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: 'colored',
-        });
+            toast.success(`Token refresh success - New token info: ${this.state.tokenEndInfo}`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'colored',
+            });
+        }
+
+
 
     }
 
