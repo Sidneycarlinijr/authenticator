@@ -90,7 +90,6 @@ class Main extends Component {
     }
 
     render() {
-        sessionStorage.removeItem('authToken')
         return (
             <div className="flex flex-between flex-col items-center">
                 <ToastContainer />
