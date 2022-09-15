@@ -38,14 +38,14 @@ O projeto teve foco em componentes do tipo Class.
 
 Antes de começar, você precisará das seguintes ferramentas:
 </br>
-- [Node.js](https://nodejs.org/en/) Versão utilizada: 16.16.0. 
-- [MongoDB](https://www.mongodb.com/try/download/community) Versão utilizada: 6.0.0
+- [Node.js](https://nodejs.org/en/) Versão ideal: 16.16.0. 
+- [MongoDB](https://www.mongodb.com/try/download/community) Versão ideal: 6.0.0
 - Terminal de sua preferência
 
 
 <h4>Opcional</h4>
 
-- [MongoDB Compass](https://www.mongodb.com/pt-br/products/compass)(Interface gráfica do Mongo)
+- [MongoDB Compass](https://www.mongodb.com/pt-br/products/compass) (Interface gráfica do Mongo)
 
 
 ### Iniciando o Projeto
