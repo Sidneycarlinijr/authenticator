@@ -1,6 +1,6 @@
 <h1 align="center">Authenticator</h1>
 
-<p align="center"><strong>Authenticator</strong> é um serviço web capaz de autenticar e validar as requisições do usuário via Token JWT.</p>
+<p align="center"><strong>Authenticator</strong> é um capaz de autenticar e validar as requisições do usuário via Token JWT.</p>
 
 </br>
 
